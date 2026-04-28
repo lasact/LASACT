@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+/* Overlay backdrop */
+.lasact-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(21, 39, 83, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.lasact-popup-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Popup card */
+.lasact-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -44%) scale(0.96);
+  z-index: 9999;
+  width: min(560px, calc(100vw - 32px));
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow:
+    0 8px 40px rgba(21, 39, 83, 0.22),
+    0 2px 8px rgba(21, 39, 83, 0.10);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lasact-popup.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: all;
+}
+
+/* Header band */
+.lasact-popup__header {
+  background: #152753;
+  padding: 28px 32px 24px;
+  position: relative;
+}
+
+.lasact-popup__header-eyebrow {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4b71dc;
+  margin: 0 0 8px;
+}
+
+.lasact-popup__header-title {
+  font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Close button */
+.lasact-popup__close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  padding: 0;
+}
+
+.lasact-popup__close:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.lasact-popup__close svg {
+  width: 16px;
+  height: 16px;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* Accent stripe */
+.lasact-popup__stripe {
+  height: 4px;
+  background: linear-gradient(90deg, #4b71dc 0%, #ebf7ff 100%);
+}
+
+/* Body */
+.lasact-popup__body {
+  background: #ebf7ff;
+  padding: 28px 32px 32px;
+}
+
+.lasact-popup__icon {
+  width: 52px;
+  height: 52px;
+  background: #152753;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.lasact-popup__icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: #ebf7ff;
+  stroke-width: 2;
+  fill: none;
+}
+
+.lasact-popup__body p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #152753;
+  margin: 0 0 12px;
+}
+
+.lasact-popup__body p:last-of-type {
+  margin-bottom: 0;
+}
+
+.lasact-popup__deadline {
+  display: inline-block;
+  font-weight: 700;
+  color: #4b71dc;
+}
+
+.lasact-popup__fee-box {
+  background: #152753;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 22px 0 26px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lasact-popup__fee-box-amount {
+  font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.lasact-popup__fee-box-label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #ebf7ff;
+}
+
+/* CTA button */
+.lasact-popup__cta {
+  display: block;
+  width: 100%;
+  padding: 15px 24px;
+  background: #4b71dc;
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(75, 113, 220, 0.38);
+}
+
+.lasact-popup__cta:hover {
+  background: #3a5ec4;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(75, 113, 220, 0.48);
+}
+
+.lasact-popup__cta:active {
+  transform: translateY(0);
+}
+
+/* Dismiss link */
+.lasact-popup__dismiss {
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: #152753;
+  opacity: 0.6;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  transition: opacity 0.2s;
+  padding: 0;
+}
+
+.lasact-popup__dismiss:hover {
+  opacity: 1;
+}

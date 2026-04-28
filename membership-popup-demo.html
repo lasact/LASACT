@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LASACT – Membership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="membership-popup.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #ebf7ff;
+      color: #152753;
+      min-height: 100vh;
+    }
+
+    /* Simple placeholder page so the popup has context */
+    .page-header {
+      background: #152753;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .page-header__logo {
+      font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+    }
+
+    .page-header__logo span {
+      color: #4b71dc;
+    }
+
+    .page-main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .page-main h1 {
+      font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+      font-size: 42px;
+      color: #152753;
+      margin-bottom: 16px;
+    }
+
+    .page-main p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #152753;
+      max-width: 620px;
+      margin-bottom: 20px;
+    }
+
+    .membership-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .membership-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(21, 39, 83, 0.10);
+      border-top: 4px solid #4b71dc;
+    }
+
+    .membership-card h3 {
+      font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+      font-size: 20px;
+      color: #152753;
+      margin-bottom: 8px;
+    }
+
+    .membership-card p {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    /* Demo trigger button */
+    .demo-trigger {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 24px;
+      background: #4b71dc;
+      color: white;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <div class="page-header__logo">LAS<span>ACT</span></div>
+  </header>
+
+  <main class="page-main">
+    <h1>Membership</h1>
+    <p>
+      LASACT membership connects you with professionals across the Louisiana
+      speech-language and hearing community. Review the options below and
+      renew or join today.
+    </p>
+    <p>
+      The popup notice will appear automatically after 3.5 seconds. Use the
+      button below to re-trigger it for preview purposes.
+    </p>
+
+    <div class="membership-cards">
+      <div class="membership-card">
+        <h3>Individual</h3>
+        <p>Full professional membership with voting rights and journal access.</p>
+      </div>
+      <div class="membership-card">
+        <h3>Student</h3>
+        <p>Discounted rate for enrolled graduate students in qualifying programs.</p>
+      </div>
+      <div class="membership-card">
+        <h3>Associate</h3>
+        <p>For retired professionals and community supporters of LASACT.</p>
+      </div>
+    </div>
+
+    <button class="demo-trigger" id="demo-trigger">Preview Popup Again</button>
+  </main>
+
+  <script src="membership-popup.js"></script>
+  <script>
+    // Demo-only: re-trigger popup on button click, bypassing session storage
+    document.getElementById('demo-trigger').addEventListener('click', function () {
+      sessionStorage.removeItem('lasact_reinstatement_popup_dismissed');
+      location.reload();
+    });
+  </script>
+
+</body>
+</html>
