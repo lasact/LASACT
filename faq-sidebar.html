@@ -1,0 +1,256 @@
+<!-- LASACT FAQ Sidebar — Paste before </body> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  .lasact-faq-tab {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 8888;
+  }
+
+  .lasact-faq-tab-btn {
+    background: #2278d5;
+    color: #ecf0ef;
+    border: none;
+    cursor: pointer;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 16px 10px;
+    border-radius: 8px 0 0 8px;
+    transition: background 0.2s;
+    display: block;
+  }
+
+  .lasact-faq-tab-btn:hover { background: #152753; }
+  .lasact-faq-tab-btn.hidden { display: none; }
+
+  .lasact-faq-panel {
+    position: fixed;
+    right: -340px;
+    top: 0;
+    height: 100%;
+    width: 320px;
+    background: #ecf0ef;
+    box-shadow: -4px 0 32px rgba(21, 39, 83, 0.2);
+    z-index: 8889;
+    transition: right 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .lasact-faq-panel.open { right: 0; }
+
+  .lasact-faq-header {
+    background: #152753;
+    padding: 22px 20px 16px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .lasact-faq-eyebrow {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #97c9ff;
+    margin: 0 0 6px;
+  }
+
+  .lasact-faq-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ecf0ef;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .lasact-faq-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(151, 201, 255, 0.15);
+    border: none;
+    color: #97c9ff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1;
+  }
+
+  .lasact-faq-close:hover { background: rgba(151, 201, 255, 0.28); }
+
+  .lasact-faq-divider {
+    height: 3px;
+    background: linear-gradient(90deg, #2278d5, #97c9ff);
+    flex-shrink: 0;
+  }
+
+  .lasact-faq-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .lasact-faq-item { margin-bottom: 20px; }
+  .lasact-faq-item:last-child { margin-bottom: 0; }
+
+  .lasact-faq-item-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .lasact-faq-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    background: #2278d5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .lasact-faq-q {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #152753;
+    margin: 0;
+    letter-spacing: 0.2px;
+    line-height: 1.3;
+  }
+
+  .lasact-faq-a {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13.5px;
+    color: #152753;
+    line-height: 1.65;
+    margin: 0 0 8px;
+    padding-left: 40px;
+  }
+
+  .lasact-faq-a:last-child { margin-bottom: 0; }
+
+  .lasact-faq-a strong { color: #2278d5; font-weight: 600; }
+
+  .lasact-faq-sep {
+    height: 1px;
+    background: rgba(21, 39, 83, 0.1);
+    margin: 20px 0;
+  }
+
+  @media (max-width: 480px) {
+    .lasact-faq-panel { width: 88vw; right: -92vw; }
+    .lasact-faq-panel.open { right: 0; }
+  }
+</style>
+
+<div class="lasact-faq-tab" id="lasactFaqTab">
+  <button class="lasact-faq-tab-btn" id="lasactFaqTabBtn">Quick Guide</button>
+</div>
+
+<div class="lasact-faq-panel" id="lasactFaqPanel" role="complementary" aria-label="Quick Guide">
+  <div class="lasact-faq-header">
+    <button class="lasact-faq-close" id="lasactFaqClose" aria-label="Close guide">✕</button>
+    <p class="lasact-faq-eyebrow">Need to Know</p>
+    <h2 class="lasact-faq-title">Quick Guide</h2>
+  </div>
+  <div class="lasact-faq-divider"></div>
+  <div class="lasact-faq-body">
+
+    <div class="lasact-faq-item">
+      <div class="lasact-faq-item-header">
+        <div class="lasact-faq-icon">
+          <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="14" height="14" aria-hidden="true">
+            <circle cx="7.5" cy="7.5" r="6" stroke="#ecf0ef" stroke-width="1.4"/>
+            <path d="M7.5 5v3.5M7.5 10.5v.5" stroke="#ecf0ef" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="lasact-faq-q">What is asynchronous learning?</p>
+      </div>
+      <p class="lasact-faq-a">Asynchronous learning allows you to learn on your own schedule, within a certain timeframe. You can access and complete lectures, readings, homework, and other learning materials at any time during your course window — no set login times required.</p>
+    </div>
+
+    <div class="lasact-faq-sep"></div>
+
+    <div class="lasact-faq-item">
+      <div class="lasact-faq-item-header">
+        <div class="lasact-faq-icon">
+          <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="14" height="14" aria-hidden="true">
+            <rect x="2" y="2" width="4.5" height="11" rx="1" stroke="#ecf0ef" stroke-width="1.4"/>
+            <rect x="8.5" y="5.5" width="4.5" height="7.5" rx="1" stroke="#ecf0ef" stroke-width="1.4"/>
+          </svg>
+        </div>
+        <p class="lasact-faq-q">Education vs. supervision hours</p>
+      </div>
+      <p class="lasact-faq-a"><strong>Education hours</strong> are completed through coursework and training programs like those offered here.</p>
+      <p class="lasact-faq-a"><strong>Supervision hours</strong> are earned by working in the field under a qualified supervisor — they cannot be obtained through coursework alone.</p>
+    </div>
+
+    <div class="lasact-faq-sep"></div>
+
+    <div class="lasact-faq-item">
+      <div class="lasact-faq-item-header">
+        <div class="lasact-faq-icon">
+          <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="14" height="14" aria-hidden="true">
+            <rect x="2" y="2" width="11" height="11" rx="1.5" stroke="#ecf0ef" stroke-width="1.4"/>
+            <path d="M2 6h11" stroke="#ecf0ef" stroke-width="1.4"/>
+            <path d="M5 2v4M10 2v4" stroke="#ecf0ef" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="lasact-faq-q">What is rolling admissions?</p>
+      </div>
+      <p class="lasact-faq-a">We review applications as they arrive, rather than waiting for a fixed deadline — and admission is <strong>not binding</strong>, so you can still compare financial aid offers from other schools.</p>
+      <p class="lasact-faq-a"><strong>Applying early is beneficial.</strong> Spots and scholarships fill up quickly, and competition becomes fiercer as time goes on. We accept students immediately upon enrolling.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var tab = document.getElementById('lasactFaqTab');
+    var tabBtn = document.getElementById('lasactFaqTabBtn');
+    var panel = document.getElementById('lasactFaqPanel');
+    var closeBtn = document.getElementById('lasactFaqClose');
+
+    tabBtn.addEventListener('click', function () {
+      panel.classList.add('open');
+      tabBtn.classList.add('hidden');
+    });
+
+    closeBtn.addEventListener('click', function () {
+      panel.classList.remove('open');
+      tabBtn.classList.remove('hidden');
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        panel.classList.remove('open');
+        tabBtn.classList.remove('hidden');
+      }
+    });
+  })();
+</script>
+<!-- END LASACT FAQ Sidebar -->
