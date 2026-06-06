@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jessica & Bradley — Wedding Design Suite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Global Reset & Tokens ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --chartreuse:    #8B9E35;
+      --chartreuse-lt: #A3B94A;
+      --chartreuse-dk: #6B7A28;
+      --forest:        #1C2E10;
+      --gold:          #C9A84C;
+      --gold-lt:       #E2C97A;
+      --gold-dk:       #9A7730;
+      --cream:         #F8F4EC;
+      --white:         #FFFFFF;
+      --off-white:     #F2EFE7;
+      --shadow:        rgba(0,0,0,0.25);
+
+      --script: 'Great Vibes', cursive;
+      --serif:  'Cormorant Garamond', serif;
+      --sans:   'Josefin Sans', sans-serif;
+    }
+
+    body {
+      background: var(--forest);
+      color: var(--cream);
+      font-family: var(--sans);
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Page header ─────────────────────────────────────────────────── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .page-header h1 {
+      font-family: var(--script);
+      font-size: 3.6rem;
+      color: var(--gold-lt);
+      line-height: 1;
+    }
+    .page-header p {
+      font-family: var(--sans);
+      font-size: .72rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: .6;
+      margin-top: 8px;
+    }
+    .section-title {
+      font-family: var(--sans);
+      font-size: .65rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      padding-left: 4px;
+    }
+
+    /* ── Grid wrapper ─────────────────────────────────────────────────── */
+    .grid {
+      display: grid;
+      gap: 32px;
+      max-width: 1280px;
+      margin: 0 auto 64px;
+    }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+    /* ── Shared card shell ───────────────────────────────────────────── */
+    .card {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px var(--shadow);
+    }
+    .card-label {
+      position: absolute;
+      top: 12px; left: 16px;
+      font-family: var(--sans);
+      font-size: .55rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      z-index: 10;
+    }
+
+    /* ── Decorative divider ───────────────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      color: var(--gold-lt);
+      font-size: .8rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: currentColor;
+      opacity: .5;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       1. WELCOME SIGN
+    ═══════════════════════════════════════════════════════════════════ */
+    .welcome-sign {
+      background: var(--chartreuse);
+      aspect-ratio: 2/3;
+      max-width: 420px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 48px 36px;
+      text-align: center;
+    }
+    .welcome-sign .eyebrow {
+      font-family: var(--sans);
+      font-size: .62rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+    }
+    .welcome-sign .names {
+      font-family: var(--script);
+      font-size: 4.8rem;
+      color: var(--white);
+      line-height: 1.05;
+      text-shadow: 2px 3px 10px rgba(0,0,0,.2);
+    }
+    .welcome-sign .ampersand {
+      font-family: var(--script);
+      font-size: 2.8rem;
+      color: rgba(255,255,255,.9);
+    }
+    .welcome-sign .footer-text {
+      font-family: var(--sans);
+      font-size: .6rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       2. CEREMONY PROGRAM
+    ═══════════════════════════════════════════════════════════════════ */
+    .program {
+      background: var(--cream);
+      color: var(--forest);
+      padding: 44px 36px;
+      text-align: center;
+      aspect-ratio: .65/1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .program .top-accent {
+      font-family: var(--sans);
+      font-size: .55rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--chartreuse-dk);
+      margin-bottom: 6px;
+    }
+    .program .prog-names {
+      font-family: var(--script);
+      font-size: 3.4rem;
+      color: var(--chartreuse-dk);
+      line-height: 1;
+    }
+    .program .prog-date {
+      font-family: var(--sans);
+      font-size: .6rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold-dk);
+      margin-top: 4px;
+    }
+    .program .prog-section-head {
+      font-family: var(--sans);
+      font-size: .55rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--chartreuse-dk);
+      margin-top: 14px;
+      margin-bottom: 4px;
+    }
+    .program .prog-item {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--serif);
+      font-size: .92rem;
+      color: var(--forest);
+      padding: 2px 0;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+    }
+    .program .prog-item .time {
+      font-size: .72rem;
+      color: var(--gold-dk);
+      letter-spacing: .08em;
+      font-family: var(--sans);
+    }
+    .program .bridal-party {
+      font-family: var(--serif);
+      font-size: .82rem;
+      color: var(--forest);
+      opacity: .7;
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       3. DINNER MENU
+    ═══════════════════════════════════════════════════════════════════ */
+    .menu-card {
+      background: var(--forest);
+      border: 1.5px solid var(--gold);
+      padding: 40px 34px;
+      text-align: center;
+      position: relative;
+    }
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(201,168,76,.3);
+      pointer-events: none;
+    }
+    .menu-card .menu-header {
+      font-family: var(--sans);
+      font-size: .55rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 6px;
+    }
+    .menu-card .menu-names {
+      font-family: var(--script);
+      font-size: 2.8rem;
+      color: var(--gold-lt);
+      line-height: 1.1;
+    }
+    .menu-card .course-label {
+      font-family: var(--sans);
+      font-size: .52rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+    .menu-card .dish-name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .menu-card .dish-desc {
+      font-family: var(--serif);
+      font-size: .78rem;
+      font-style: italic;
+      color: rgba(248,244,236,.55);
+      margin-top: 2px;
+    }
+    .menu-card .gold-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 14px auto;
+      opacity: .6;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       4. BAR MENU
+    ═══════════════════════════════════════════════════════════════════ */
+    .bar-menu {
+      background: var(--chartreuse-dk);
+      padding: 44px 36px;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,.2);
+    }
+    .bar-menu .bar-title {
+      font-family: var(--script);
+      font-size: 3.2rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .bar-menu .bar-sub {
+      font-family: var(--sans);
+      font-size: .55rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 20px;
+    }
+    .bar-menu .drink-section {
+      font-family: var(--sans);
+      font-size: .52rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+    .bar-menu .drink-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--white);
+    }
+    .bar-menu .drink-desc {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: .78rem;
+      color: rgba(255,255,255,.55);
+      margin-top: 1px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       5. TABLE NUMBERS
+    ═══════════════════════════════════════════════════════════════════ */
+    .table-num {
+      background: var(--chartreuse);
+      aspect-ratio: 3/4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 24px;
+      text-align: center;
+      border: 1.5px solid rgba(255,255,255,.3);
+    }
+    .table-num .tnum-label {
+      font-family: var(--sans);
+      font-size: .52rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+    }
+    .table-num .tnum-number {
+      font-family: var(--script);
+      font-size: 5.5rem;
+      color: var(--white);
+      line-height: .9;
+    }
+    .table-num .tnum-footer {
+      font-family: var(--sans);
+      font-size: .5rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       6. ESCORT / PLACE CARDS
+    ═══════════════════════════════════════════════════════════════════ */
+    .place-card {
+      background: var(--cream);
+      padding: 22px 28px;
+      text-align: center;
+      border-bottom: 3px solid var(--chartreuse);
+      aspect-ratio: 3/2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .place-card .pc-name {
+      font-family: var(--script);
+      font-size: 2rem;
+      color: var(--chartreuse-dk);
+    }
+    .place-card .pc-table {
+      font-family: var(--sans);
+      font-size: .52rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold-dk);
+    }
+    .place-card .pc-meal {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: .78rem;
+      color: rgba(28,46,16,.5);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       7. SEATING CHART SIGN
+    ═══════════════════════════════════════════════════════════════════ */
+    .seating-chart {
+      background: var(--cream);
+      padding: 40px 36px;
+      color: var(--forest);
+      text-align: center;
+    }
+    .seating-chart .sc-title {
+      font-family: var(--script);
+      font-size: 3rem;
+      color: var(--chartreuse-dk);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .seating-chart .sc-sub {
+      font-family: var(--sans);
+      font-size: .55rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold-dk);
+      margin-bottom: 20px;
+    }
+    .seating-chart .table-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: left;
+    }
+    .seating-chart .table-col h4 {
+      font-family: var(--sans);
+      font-size: .52rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--chartreuse-dk);
+      border-bottom: 1px solid var(--chartreuse);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+    }
+    .seating-chart .table-col p {
+      font-family: var(--serif);
+      font-size: .82rem;
+      color: var(--forest);
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       8. DIRECTIONAL SIGN
+    ═══════════════════════════════════════════════════════════════════ */
+    .direction-sign {
+      background: var(--chartreuse);
+      padding: 36px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .direction-sign .sign-header {
+      font-family: var(--sans);
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+    }
+    .dir-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .dir-arrow {
+      font-size: 1.6rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .dir-text {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+    .dir-sub {
+      font-family: var(--sans);
+      font-size: .52rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       9. THANK YOU CARD
+    ═══════════════════════════════════════════════════════════════════ */
+    .thank-you {
+      background: var(--forest);
+      border: 1.5px solid var(--gold);
+      padding: 36px;
+      text-align: center;
+      aspect-ratio: 3/2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+    }
+    .thank-you::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(201,168,76,.25);
+      pointer-events: none;
+    }
+    .thank-you .ty-main {
+      font-family: var(--script);
+      font-size: 3.8rem;
+      color: var(--gold-lt);
+      line-height: 1;
+    }
+    .thank-you .ty-body {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: .92rem;
+      color: var(--cream);
+      opacity: .8;
+      max-width: 240px;
+      line-height: 1.6;
+    }
+    .thank-you .ty-sig {
+      font-family: var(--script);
+      font-size: 1.8rem;
+      color: var(--gold-lt);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       10. TABLE FORMATION DIAGRAM
+    ═══════════════════════════════════════════════════════════════════ */
+    .formation-section {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .formation-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.2);
+      border-radius: 4px;
+      padding: 40px;
+    }
+    .formation-title {
+      font-family: var(--script);
+      font-size: 2.6rem;
+      color: var(--gold-lt);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .formation-sub {
+      font-family: var(--sans);
+      font-size: .58rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--chartreuse-lt);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    /* Venue floor plan */
+    .floor-plan {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+    .fp-zone-label {
+      font-family: var(--sans);
+      font-size: .55rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    /* Stage / Head table */
+    .stage-area {
+      background: var(--chartreuse-dk);
+      border: 2px solid var(--gold);
+      border-radius: 60px;
+      width: 100%;
+      max-width: 700px;
+      padding: 20px 40px;
+      text-align: center;
+    }
+    .stage-area .stage-name {
+      font-family: var(--script);
+      font-size: 1.8rem;
+      color: var(--gold-lt);
+      line-height: 1;
+    }
+    .stage-area .stage-detail {
+      font-family: var(--sans);
+      font-size: .52rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+    }
+
+    /* Dance floor */
+    .dance-floor-row {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .dance-floor {
+      width: 200px;
+      height: 140px;
+      border: 2px dashed rgba(201,168,76,.5);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .dance-floor .df-label {
+      font-family: var(--sans);
+      font-size: .52rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .dance-floor .df-icon {
+      font-size: 2rem;
+    }
+
+    /* Table rows */
+    .table-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 860px;
+    }
+    .table-row-fp {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Individual table in floor plan */
+    .fp-table {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .fp-table-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--chartreuse);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--script);
+      font-size: 1.5rem;
+      color: var(--white);
+      position: relative;
+    }
+    /* Chair dots around table */
+    .fp-table-circle::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 5px dotted rgba(201,168,76,.5);
+    }
+    .fp-table-name {
+      font-family: var(--sans);
+      font-size: .48rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+    }
+
+    /* ── Decor key ───────────────────────────────────────────────────── */
+    .decor-key {
+      margin-top: 40px;
+      border-top: 1px solid rgba(201,168,76,.2);
+      padding-top: 32px;
+    }
+    .decor-key-title {
+      font-family: var(--sans);
+      font-size: .58rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .key-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .key-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .key-swatch {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .key-swatch.chartreuse { background: var(--chartreuse); }
+    .key-swatch.gold       { background: var(--gold); }
+    .key-swatch.forest     { background: var(--forest); border-color: rgba(255,255,255,.2); }
+    .key-swatch.cream      { background: var(--cream); }
+    .key-item-info h4 {
+      font-family: var(--sans);
+      font-size: .62rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .key-item-info p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: .8rem;
+      color: rgba(248,244,236,.5);
+      line-height: 1.5;
+    }
+
+    /* ── Styling notes panel ─────────────────────────────────────────── */
+    .notes-panel {
+      max-width: 1280px;
+      margin: 0 auto 64px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.2);
+      border-radius: 4px;
+      padding: 36px 40px;
+    }
+    .notes-panel h3 {
+      font-family: var(--sans);
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .note-block h4 {
+      font-family: var(--sans);
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--chartreuse-lt);
+      margin-bottom: 8px;
+    }
+    .note-block ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .note-block li {
+      font-family: var(--serif);
+      font-size: .88rem;
+      color: rgba(248,244,236,.7);
+      padding-left: 14px;
+      position: relative;
+    }
+    .note-block li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: .7rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Page Header ──────────────────────────────────────────────── -->
+  <div class="page-header">
+    <h1>Jessica &amp; Bradley</h1>
+    <p>Wedding Design Suite &nbsp;·&nbsp; Saturday, May 2, 2026 &nbsp;·&nbsp; Malibu, California</p>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 1 — WELCOME + PROGRAM
+  ══════════════════════════════════════════════════════════════════ -->
+  <p class="section-title" style="max-width:1280px;margin:0 auto 28px;">01 &nbsp;/&nbsp; Welcome &amp; Ceremony</p>
+  <div class="grid grid-2" style="max-width:1280px;">
+
+    <!-- Welcome Sign -->
+    <div class="card">
+      <span class="card-label">Welcome Sign</span>
+      <div class="welcome-sign">
+        <p class="eyebrow">Welcome to our Wedding</p>
+        <div class="divider" style="color:rgba(255,255,255,.4);width:80px;margin:6px auto;">✦</div>
+        <p class="names">Jessica</p>
+        <p class="ampersand">&amp;</p>
+        <p class="names">Bradley</p>
+        <div class="divider" style="color:rgba(255,255,255,.4);width:80px;margin:8px auto;">✦</div>
+        <p class="footer-text">Saturday, May 2, 2026</p>
+        <p class="footer-text">Malibu, California</p>
+      </div>
+    </div>
+
+    <!-- Ceremony Program -->
+    <div class="card">
+      <span class="card-label" style="color:rgba(28,46,16,.4);">Ceremony Program</span>
+      <div class="program">
+        <p class="top-accent">The Wedding Ceremony of</p>
+        <p class="prog-names">Jessica</p>
+        <p style="font-family:var(--script);font-size:1.8rem;color:var(--chartreuse-dk);">&amp;</p>
+        <p class="prog-names">Bradley</p>
+        <p class="prog-date">Saturday, May 2, 2026 &nbsp;·&nbsp; Four O'Clock in the Afternoon</p>
+        <p style="font-family:var(--serif);font-style:italic;font-size:.8rem;color:rgba(28,46,16,.5);">Malibu, California</p>
+
+        <div class="divider" style="color:var(--chartreuse);margin:12px 0;"></div>
+
+        <p class="prog-section-head">Order of Ceremony</p>
+        <div class="prog-item"><span>Prelude Music</span><span class="time">3:45 PM</span></div>
+        <div class="prog-item"><span>Seating of Families</span><span class="time">3:50 PM</span></div>
+        <div class="prog-item"><span>Processional</span><span class="time">4:00 PM</span></div>
+        <div class="prog-item"><span>Welcome &amp; Invocation</span><span class="time">4:05 PM</span></div>
+        <div class="prog-item"><span>Readings</span><span class="time">4:12 PM</span></div>
+        <div class="prog-item"><span>Exchange of Vows</span><span class="time">4:20 PM</span></div>
+        <div class="prog-item"><span>Ring Ceremony</span><span class="time">4:28 PM</span></div>
+        <div class="prog-item"><span>Pronouncement &amp; First Kiss</span><span class="time">4:35 PM</span></div>
+        <div class="prog-item" style="border:none;"><span>Recessional</span><span class="time">4:38 PM</span></div>
+
+        <div class="divider" style="color:var(--chartreuse);margin:10px 0;"></div>
+
+        <p class="prog-section-head">Wedding Party</p>
+        <p class="bridal-party">
+          Maid of Honor: Claire Nguyen<br/>
+          Best Man: Marcus Webb<br/>
+          Bridesmaids: Sophia · Olivia · Maya<br/>
+          Groomsmen: Ethan · James · Noah<br/>
+          Officiant: Rev. Patricia Collins
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 2 — MENUS
+  ══════════════════════════════════════════════════════════════════ -->
+  <p class="section-title" style="max-width:1280px;margin:48px auto 28px;">02 &nbsp;/&nbsp; Menus</p>
+  <div class="grid grid-2" style="max-width:1280px;">
+
+    <!-- Dinner Menu -->
+    <div class="card">
+      <span class="card-label">Dinner Menu</span>
+      <div class="menu-card">
+        <p class="menu-header">Reception Dinner</p>
+        <p class="menu-names">Jessica &amp; Bradley</p>
+        <p style="font-family:var(--sans);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(248,244,236,.4);margin-top:4px;">May 2, 2026</p>
+
+        <div class="gold-rule"></div>
+
+        <p class="course-label">— First Course —</p>
+        <p class="dish-name">Garden Salad</p>
+        <p class="dish-desc">heirloom tomatoes, shaved fennel, lemon vinaigrette</p>
+        <p class="dish-name" style="margin-top:10px;">Cream of Asparagus Soup</p>
+        <p class="dish-desc">chive oil, crème fraîche</p>
+
+        <div class="gold-rule"></div>
+
+        <p class="course-label">— Entrée — Please select one</p>
+        <p class="dish-name">Pan-Seared Halibut</p>
+        <p class="dish-desc">spring pea purée, saffron beurre blanc, micro greens</p>
+        <p class="dish-name" style="margin-top:10px;">Filet Mignon</p>
+        <p class="dish-desc">truffle demi-glace, roasted fingerlings, asparagus</p>
+        <p class="dish-name" style="margin-top:10px;">Wild Mushroom Risotto <span style="font-size:.65rem;color:var(--gold);">(v)</span></p>
+        <p class="dish-desc">aged parmesan, black truffle, herb oil</p>
+
+        <div class="gold-rule"></div>
+
+        <p class="course-label">— Dessert —</p>
+        <p class="dish-name">Wedding Cake</p>
+        <p class="dish-desc">champagne chiffon, lemon curd, vanilla buttercream</p>
+        <p class="dish-name" style="margin-top:10px;">Dessert Station</p>
+        <p class="dish-desc">macarons · petit fours · fresh berries</p>
+      </div>
+    </div>
+
+    <!-- Bar Menu -->
+    <div class="card">
+      <span class="card-label">Bar Menu</span>
+      <div class="bar-menu">
+        <p class="bar-title">The Bar</p>
+        <p class="bar-sub">Open Bar &nbsp;·&nbsp; Compliments of the Couple</p>
+
+        <div class="divider" style="color:rgba(255,255,255,.3);">✦</div>
+
+        <p class="drink-section">— Signature Cocktails —</p>
+        <p class="drink-name">The Jessica</p>
+        <p class="drink-desc">elderflower gin, cucumber, lime, sparkling water</p>
+        <p class="drink-name" style="margin-top:8px;">The Bradley</p>
+        <p class="drink-desc">bourbon, honey, lemon, fresh thyme</p>
+        <p class="drink-name" style="margin-top:8px;">Champagne Toast</p>
+        <p class="drink-desc">served at 6:30 PM</p>
+
+        <div class="divider" style="color:rgba(255,255,255,.25);margin:12px 0;">✦</div>
+
+        <p class="drink-section">— Wine —</p>
+        <p class="drink-name">Sauvignon Blanc &nbsp;·&nbsp; Pinot Noir</p>
+        <p class="drink-desc">Malibu Vineyard Estate Selection</p>
+
+        <div class="divider" style="color:rgba(255,255,255,.25);margin:12px 0;">✦</div>
+
+        <p class="drink-section">— Beer —</p>
+        <p class="drink-name">Golden Ale &nbsp;·&nbsp; IPA &nbsp;·&nbsp; Lager</p>
+
+        <div class="divider" style="color:rgba(255,255,255,.25);margin:12px 0;">✦</div>
+
+        <p class="drink-section">— Non-Alcoholic —</p>
+        <p class="drink-name">Sparkling Lemonade &nbsp;·&nbsp; Infused Water</p>
+        <p class="drink-name">Iced Tea &nbsp;·&nbsp; Coffee &amp; Tea Service</p>
+
+        <div class="divider" style="color:rgba(255,255,255,.2);margin:16px 0;"></div>
+        <p style="font-family:var(--serif);font-style:italic;font-size:.78rem;color:rgba(255,255,255,.4);">Please drink responsibly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 3 — TABLE STATIONERY
+  ══════════════════════════════════════════════════════════════════ -->
+  <p class="section-title" style="max-width:1280px;margin:48px auto 28px;">03 &nbsp;/&nbsp; Table Stationery</p>
+  <div class="grid grid-4" style="max-width:1280px;">
+
+    <!-- Table Numbers 1–4 -->
+    <div class="card">
+      <div class="table-num">
+        <p class="tnum-label">Table</p>
+        <p class="tnum-number">1</p>
+        <p class="tnum-footer">Jessica &amp; Bradley · 2026</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="table-num">
+        <p class="tnum-label">Table</p>
+        <p class="tnum-number">2</p>
+        <p class="tnum-footer">Jessica &amp; Bradley · 2026</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="table-num">
+        <p class="tnum-label">Table</p>
+        <p class="tnum-number">5</p>
+        <p class="tnum-footer">Jessica &amp; Bradley · 2026</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="table-num">
+        <p class="tnum-label">Table</p>
+        <p class="tnum-number">8</p>
+        <p class="tnum-footer">Jessica &amp; Bradley · 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Place Cards -->
+  <div class="grid grid-4" style="max-width:1280px; margin-top:20px;">
+    <div class="card"><div class="place-card">
+      <p class="pc-name">Eleanor</p>
+      <p class="pc-table">Table 3</p>
+      <p class="pc-meal">Filet Mignon</p>
+    </div></div>
+    <div class="card"><div class="place-card">
+      <p class="pc-name">Marcus</p>
+      <p class="pc-table">Table 1</p>
+      <p class="pc-meal">Halibut</p>
+    </div></div>
+    <div class="card"><div class="place-card">
+      <p class="pc-name">Sophia</p>
+      <p class="pc-table">Table 2</p>
+      <p class="pc-meal">Risotto</p>
+    </div></div>
+    <div class="card"><div class="place-card">
+      <p class="pc-name">Theodore</p>
+      <p class="pc-table">Table 5</p>
+      <p class="pc-meal">Filet Mignon</p>
+    </div></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 4 — SEATING CHART + DIRECTIONAL
+  ══════════════════════════════════════════════════════════════════ -->
+  <p class="section-title" style="max-width:1280px;margin:48px auto 28px;">04 &nbsp;/&nbsp; Seating &amp; Directions</p>
+  <div class="grid grid-2" style="max-width:1280px;">
+
+    <!-- Seating Chart -->
+    <div class="card">
+      <span class="card-label" style="color:rgba(28,46,16,.4);">Seating Chart</span>
+      <div class="seating-chart">
+        <p class="sc-title">Find Your Seat</p>
+        <p class="sc-sub">Kindly locate your name and table below</p>
+        <div class="table-group">
+          <div class="table-col">
+            <h4>Table 1 — Sweetheart</h4>
+            <p>Jessica &amp; Bradley</p>
+          </div>
+          <div class="table-col">
+            <h4>Table 2 — Magnolia</h4>
+            <p>The Nguyen Family<br/>Claire &amp; David<br/>Sophie &amp; Tom<br/>Olivia &amp; Ryan</p>
+          </div>
+          <div class="table-col">
+            <h4>Table 3 — Wisteria</h4>
+            <p>The Webb Family<br/>Marcus &amp; Anna<br/>James &amp; Lily<br/>Ethan &amp; Grace</p>
+          </div>
+          <div class="table-col">
+            <h4>Table 4 — Gardenia</h4>
+            <p>Noah &amp; Emma<br/>Liam &amp; Ava<br/>Lucas &amp; Mia<br/>Henry &amp; Zoe</p>
+          </div>
+          <div class="table-col">
+            <h4>Table 5 — Jasmine</h4>
+            <p>Eleanor &amp; George<br/>Theodore &amp; Kate<br/>Arthur &amp; Iris<br/>Walter &amp; Helen</p>
+          </div>
+          <div class="table-col">
+            <h4>Table 6 — Orchid</h4>
+            <p>Evelyn &amp; Frank<br/>Dorothy &amp; Paul<br/>Vivian &amp; Jack<br/>Pearl &amp; Leo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Directional Sign -->
+    <div class="card">
+      <span class="card-label">Directional Sign</span>
+      <div class="direction-sign">
+        <p class="sign-header">Jessica &amp; Bradley &nbsp;·&nbsp; May 2, 2026</p>
+
+        <div class="dir-row">
+          <span class="dir-arrow">↑</span>
+          <div>
+            <p class="dir-text">Ceremony Garden</p>
+            <p class="dir-sub">Please silence all phones</p>
+          </div>
+        </div>
+        <div class="dir-row">
+          <span class="dir-arrow">→</span>
+          <div>
+            <p class="dir-text">Cocktail Hour</p>
+            <p class="dir-sub">Ocean Terrace &nbsp;·&nbsp; 5:00 PM</p>
+          </div>
+        </div>
+        <div class="dir-row">
+          <span class="dir-arrow">↓</span>
+          <div>
+            <p class="dir-text">Reception Hall</p>
+            <p class="dir-sub">Dinner &amp; Dancing &nbsp;·&nbsp; 6:00 PM</p>
+          </div>
+        </div>
+        <div class="dir-row">
+          <span class="dir-arrow">←</span>
+          <div>
+            <p class="dir-text">Guest Parking</p>
+            <p class="dir-sub">Valet available at main entrance</p>
+          </div>
+        </div>
+        <div class="dir-row">
+          <span class="dir-arrow">↑</span>
+          <div>
+            <p class="dir-text">Restrooms</p>
+            <p class="dir-sub">Adjacent to the foyer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 5 — THANK YOU CARDS
+  ══════════════════════════════════════════════════════════════════ -->
+  <p class="section-title" style="max-width:1280px;margin:48px auto 28px;">05 &nbsp;/&nbsp; Thank You Card</p>
+  <div class="grid grid-2" style="max-width:1280px;">
+    <div class="card">
+      <div class="thank-you">
+        <p class="ty-main">Thank You</p>
+        <p class="ty-body">Your presence made our day more beautiful than we could have ever imagined. With love and gratitude,</p>
+        <p class="ty-sig">Jessica &amp; Bradley</p>
+      </div>
+    </div>
+
+    <!-- Cocktail Hour Sign -->
+    <div class="card">
+      <span class="card-label">Cocktail Hour Sign</span>
+      <div style="background:var(--cream);padding:44px 36px;text-align:center;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+        <p style="font-family:var(--sans);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--chartreuse-dk);">You are warmly invited to</p>
+        <p style="font-family:var(--script);font-size:3.4rem;color:var(--chartreuse-dk);line-height:1;">Cocktail Hour</p>
+        <div class="divider" style="color:var(--gold-dk);width:100%;"></div>
+        <p style="font-family:var(--serif);font-size:1rem;color:var(--forest);">Ocean Terrace</p>
+        <p style="font-family:var(--sans);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-dk);">5:00 — 6:00 PM</p>
+        <p style="font-family:var(--serif);font-style:italic;font-size:.85rem;color:rgba(28,46,16,.55);margin-top:6px;">Enjoy hors d'oeuvres, champagne,<br/>and the company of loved ones</p>
+        <div class="divider" style="color:var(--chartreuse);width:100%;margin-top:8px;"></div>
+        <p style="font-family:var(--script);font-size:1.8rem;color:var(--chartreuse-dk);">Jessica &amp; Bradley</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 6 — TABLE FORMATION FLOOR PLAN
+  ══════════════════════════════════════════════════════════════════ -->
+  <p class="section-title" style="max-width:1280px;margin:48px auto 28px;">06 &nbsp;/&nbsp; Reception Floor Plan &amp; Table Formations</p>
+  <div class="formation-section">
+    <div class="formation-card">
+      <p class="formation-title">Reception Hall Layout</p>
+      <p class="formation-sub">Malibu Estate &nbsp;·&nbsp; Suggested Formation for 8 Tables &nbsp;·&nbsp; 60–80 Guests</p>
+
+      <div class="floor-plan">
+
+        <!-- Head table / stage -->
+        <div style="width:100%;max-width:700px;text-align:center;">
+          <p class="fp-zone-label">Head Table — Sweetheart Table for Two</p>
+          <div class="stage-area">
+            <p class="stage-name">Jessica &amp; Bradley</p>
+            <p class="stage-detail">Sweetheart Table &nbsp;·&nbsp; Elevated on platform &nbsp;·&nbsp; Lush floral cascade behind</p>
+          </div>
+        </div>
+
+        <!-- Dance floor in center -->
+        <div class="dance-floor-row">
+          <!-- Left guest tables -->
+          <div class="table-rows">
+            <p class="fp-zone-label">Guest Tables — Left Wing</p>
+            <div class="table-row-fp">
+              <div class="fp-table">
+                <div class="fp-table-circle">2</div>
+                <p class="fp-table-name">Magnolia<br/>8 seats</p>
+              </div>
+              <div class="fp-table">
+                <div class="fp-table-circle">3</div>
+                <p class="fp-table-name">Wisteria<br/>8 seats</p>
+              </div>
+            </div>
+            <div class="table-row-fp">
+              <div class="fp-table">
+                <div class="fp-table-circle">4</div>
+                <p class="fp-table-name">Gardenia<br/>8 seats</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center: dance floor -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <p class="fp-zone-label">Center</p>
+            <div class="dance-floor">
+              <p class="df-icon">🎶</p>
+              <p class="df-label">Dance Floor</p>
+            </div>
+          </div>
+
+          <!-- Right guest tables -->
+          <div class="table-rows">
+            <p class="fp-zone-label">Guest Tables — Right Wing</p>
+            <div class="table-row-fp">
+              <div class="fp-table">
+                <div class="fp-table-circle">5</div>
+                <p class="fp-table-name">Jasmine<br/>8 seats</p>
+              </div>
+              <div class="fp-table">
+                <div class="fp-table-circle">6</div>
+                <p class="fp-table-name">Orchid<br/>8 seats</p>
+              </div>
+            </div>
+            <div class="table-row-fp">
+              <div class="fp-table">
+                <div class="fp-table-circle">7</div>
+                <p class="fp-table-name">Peony<br/>8 seats</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back row / bar / cake -->
+        <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;">
+          <div class="dance-floor" style="width:160px;height:100px;border-style:solid;border-color:rgba(201,168,76,.4);">
+            <p class="df-icon">🎂</p>
+            <p class="df-label">Cake Table</p>
+          </div>
+          <div class="fp-table">
+            <div class="fp-table-circle">8</div>
+            <p class="fp-table-name">Dahlia<br/>8 seats</p>
+          </div>
+          <div class="dance-floor" style="width:160px;height:100px;border-style:solid;border-color:rgba(201,168,76,.4);">
+            <p class="df-icon">🥂</p>
+            <p class="df-label">Bar Station</p>
+          </div>
+        </div>
+
+      </div><!-- /floor-plan -->
+
+      <!-- Decor Key -->
+      <div class="decor-key">
+        <p class="decor-key-title">Decor Palette &amp; Material Guide</p>
+        <div class="key-grid">
+          <div class="key-item">
+            <div class="key-swatch chartreuse"></div>
+            <div class="key-item-info">
+              <h4>Chartreuse</h4>
+              <p>Primary — crushed velvet tablecloths, welcome sign background, table numbers</p>
+            </div>
+          </div>
+          <div class="key-item">
+            <div class="key-swatch gold"></div>
+            <div class="key-item-info">
+              <h4>Antique Gold / Brass</h4>
+              <p>Accent — candelabras, charger plates, napkin rings, frame borders</p>
+            </div>
+          </div>
+          <div class="key-item">
+            <div class="key-swatch forest"></div>
+            <div class="key-item-info">
+              <h4>Forest Green</h4>
+              <p>Depth — menu cards, bar menu, floral greenery, signage borders</p>
+            </div>
+          </div>
+          <div class="key-item">
+            <div class="key-swatch cream"></div>
+            <div class="key-item-info">
+              <h4>Ivory / Cream</h4>
+              <p>Neutral — ceremony programs, place cards, seating chart, candles, florals</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /formation-card -->
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 7 — STYLING NOTES
+  ══════════════════════════════════════════════════════════════════ -->
+  <p class="section-title" style="max-width:1280px;margin:48px auto 28px;">07 &nbsp;/&nbsp; Styling Notes &amp; Vendor Checklist</p>
+  <div class="notes-panel">
+    <h3>Design Specifications &amp; Recommendations</h3>
+    <div class="notes-grid">
+      <div class="note-block">
+        <h4>Signage Materials</h4>
+        <ul>
+          <li>Welcome sign: acrylic with 3D white raised lettering (match your inspo photo)</li>
+          <li>Programs: 5×7 in. heavyweight ivory cardstock, single fold</li>
+          <li>Menus: 4×9 in. forest green matte card, gold foil title</li>
+          <li>Table numbers: 5×7 in. acrylic or chartreuse cardstock in brass stand</li>
+          <li>Place cards: 3.5×2 in. ivory, chartreuse bottom edge, gold script</li>
+          <li>Bar menu: 18×24 in. foam board or acrylic, mounted on easel</li>
+        </ul>
+      </div>
+      <div class="note-block">
+        <h4>Table Styling</h4>
+        <ul>
+          <li>Chartreuse crushed velvet floor-length tablecloths on all guest tables</li>
+          <li>Ivory or cream duchess satin runner down sweetheart table</li>
+          <li>Brass/antique gold candelabras (3- or 5-arm) as centerpiece anchors</li>
+          <li>White taper candles — unscented for dinner tables</li>
+          <li>Floral: white orchids, hydrangeas, and trailing greenery at candelabra base</li>
+          <li>White round charger plates with subtle gold rim</li>
+        </ul>
+      </div>
+      <div class="note-block">
+        <h4>Linen &amp; Napkins</h4>
+        <ul>
+          <li>Chartreuse/olive crushed velvet for reception tables</li>
+          <li>Olive matte satin napkins, folded into bishop's hat (see inspo board)</li>
+          <li>Napkin ring: thin brass ring or olive ribbon tied with gold twine</li>
+          <li>Cocktail tables: ivory linen with chartreuse velvet overlay</li>
+        </ul>
+      </div>
+      <div class="note-block">
+        <h4>Lighting</h4>
+        <ul>
+          <li>Warm white string lights overhead — bistro or Edison style</li>
+          <li>Candlelight primary at tables — uplighting in chartreuse on draping</li>
+          <li>Sweetheart table: two large floral-encased lanterns flanking the couple</li>
+          <li>Dance floor: soft amber wash lights</li>
+        </ul>
+      </div>
+      <div class="note-block">
+        <h4>Florals</h4>
+        <ul>
+          <li>White orchids, white hydrangeas, cream roses as dominant blooms</li>
+          <li>Lush trailing greenery (eucalyptus, smilax, ivy)</li>
+          <li>Statement floral arch / backdrop behind sweetheart table</li>
+          <li>Low ground-level florals at ceremony aisle entry</li>
+        </ul>
+      </div>
+      <div class="note-block">
+        <h4>Typography Guide</h4>
+        <ul>
+          <li>Script (names, headlines): Great Vibes or similar — elegant, flowing</li>
+          <li>Serif (body copy, menus): Cormorant Garamond — light, refined</li>
+          <li>Sans (labels, caps): Josefin Sans — geometric, minimal</li>
+          <li>Print all signage at 300 DPI minimum for crisp reproduction</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
