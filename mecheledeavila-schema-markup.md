@@ -1,5 +1,5 @@
 # Schema Markup — mecheledeavila-lcsw.com
-**How to add:** In Squarespace, go to Pages → (select page) → Page Settings → Advanced → Code Injection → paste in the `<head>` field. Repeat for each page as noted below.
+**How to add:** In Webflow, see the Webflow-specific instructions at the bottom of this document.
 
 ---
 
@@ -31,7 +31,7 @@ The most important schema for local SEO. Tells Google exactly who this business 
   "description": "Individual therapy in Baton Rouge, LA specializing in anxiety, depression, trauma, EMDR, IFS, and couples therapy. Telehealth available. Serving Louisiana.",
   "url": "https://www.mecheledeavila-lcsw.com/",
   "telephone": "(225) 366-8606",
-  "email": "mechele@mecheledeavila-lcsw.com",
+  "email": "MecheleEvans@hushmail.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "1082 Havenwood Drive",
@@ -306,18 +306,46 @@ Helps Google display breadcrumb navigation in search results (e.g., Home > Servi
 
 ---
 
-## HOW TO ADD SCHEMA IN SQUARESPACE
+## HOW TO ADD SCHEMA IN WEBFLOW
 
-1. Log into Squarespace
-2. Go to **Pages** in the left sidebar
-3. Hover over the page → click the **gear icon** (Page Settings)
-4. Click the **Advanced** tab
-5. Paste the schema code into the **Header Code Injection** box
-6. Click **Save**
-7. Repeat for each page
+### Site-Wide Schema (Schema 1 — WebSite, Schema 2 — LocalBusiness)
+These only need to be added once and will apply across the whole site.
 
-**For site-wide schema** (like Schema 2 — LocalBusiness), you can also add it once via:
-- **Settings → Advanced → Code Injection → Header** — this injects it on every page
+1. In the Webflow Designer, click the **Pages** panel (left sidebar)
+2. Click the **gear icon** next to your Homepage to open Page Settings
+3. Scroll down to **Custom Code**
+4. Paste Schema 1 (WebSite) and Schema 2 (LocalBusiness) into the **`<head>` code** box — you can paste both blocks one after the other
+5. Click **Save**
+6. Publish the site
+
+> Alternatively, for truly site-wide injection: go to **Project Settings → Custom Code → Head Code** — anything pasted here loads on every page. This is the best place for Schema 2 (LocalBusiness) since it represents the business on every page.
+
+---
+
+### Page-Specific Schema (Person, FAQPage, BreadcrumbList)
+Each of these is added to its own individual page.
+
+1. In the **Pages** panel, click the **gear icon** next to the target page (e.g., About, FAQ, Anxiety)
+2. Scroll to **Custom Code → `<head>` code**
+3. Paste the schema for that page
+4. Click **Save**
+5. Publish
+
+**Page-by-page reference:**
+
+| Schema | Target Page | Where to paste |
+|--------|-------------|----------------|
+| Schema 3 — Person | About page | Page Settings → Head Code |
+| Schema 4 — FAQPage | FAQ page | Page Settings → Head Code |
+| Schema 5 — BreadcrumbList (Anxiety) | Anxiety page | Page Settings → Head Code |
+| Schema 5 — BreadcrumbList (Trauma) | Trauma page | Page Settings → Head Code |
+| Schema 5 — BreadcrumbList (IFS) | IFS page | Page Settings → Head Code |
+| *(repeat for each interior page)* | | |
+
+---
+
+### Publishing
+After adding all schema, click **Publish** in the top-right of the Designer. Schema is only live after publishing — the Rich Results Test won't find it on a staging/preview URL.
 
 ---
 
