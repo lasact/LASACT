@@ -1,0 +1,86 @@
+<style>
+#lasact-wrap{font-family:'Segoe UI',system-ui,sans-serif;width:100%;position:relative}
+#lasact-wrap .lmap-header{text-align:center;margin-bottom:12px}
+#lasact-wrap .lmap-header h2{font-size:clamp(18px,2.5vw,30px);font-weight:700;color:#4b71dc;letter-spacing:.05em;text-transform:uppercase;margin:0}
+#lasact-wrap .lmap-header p{font-size:12px;color:rgba(255,255,255,.55);margin:4px 0 0;font-style:italic}
+#lasact-wrap .lmap-container{position:relative;width:100%;max-width:860px;margin:0 auto}
+#lasact-wrap .lmap-container img{width:100%;height:auto;display:block}
+#lasact-wrap .lmap-container svg{position:absolute;top:0;left:0;width:100%;height:100%}
+#lasact-wrap .lhs{fill:transparent;cursor:pointer;transition:fill .15s}
+#lasact-wrap .lhs:hover{fill:rgba(75,113,220,.28)}
+#lasact-wrap .loverlay{display:none;position:fixed;inset:0;background:rgba(10,20,50,.72);z-index:99999;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+#lasact-wrap .loverlay.open{display:flex}
+#lasact-wrap .lbox{background:#152753;border:1px solid rgba(75,113,220,.5);border-radius:14px;padding:20px 24px;width:100%;max-width:520px;position:relative;margin:auto;animation:lpop .18s ease}
+@keyframes lpop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+#lasact-wrap .lclose{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(255,255,255,.55);font-size:20px;cursor:pointer;padding:2px 8px;border-radius:5px;line-height:1}
+#lasact-wrap .lclose:hover{color:#fff;background:rgba(75,113,220,.3)}
+#lasact-wrap .lmhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.1)}
+#lasact-wrap .lbadge{width:42px;height:42px;border-radius:50%;background:#4b71dc;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;flex-shrink:0}
+#lasact-wrap .lmhead h3{font-size:15px;font-weight:700;color:#fff;margin:0}
+#lasact-wrap .lmhead p{font-size:11px;color:rgba(255,255,255,.4);margin:2px 0 0;text-transform:uppercase;letter-spacing:.07em}
+#lasact-wrap .lsec{margin-bottom:8px}
+#lasact-wrap .lstitle{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.35);margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid rgba(255,255,255,.07)}
+#lasact-wrap .lmember{padding:2px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+#lasact-wrap .lmember:last-child{border-bottom:none}
+#lasact-wrap .lmname{font-size:13px;font-weight:600;color:#fff;line-height:1.3}
+#lasact-wrap .lmrole{font-size:11px;color:rgba(255,255,255,.45);line-height:1.3}
+#lasact-wrap .lswnote{margin-top:10px;padding:8px 12px;background:rgba(75,113,220,.1);border:1px solid rgba(75,113,220,.3);border-radius:8px}
+#lasact-wrap .lswnote h4{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.6);margin:0 0 5px}
+</style>
+
+<div id="lasact-wrap">
+  <div class="lmap-container">
+    <img src="https://cdn.prod.website-files.com/6357de13fd34f9923526cfba/69fcea61a86f92b7b23b502e_Floor%20Standing%20Sign%20%20(28%20x%2022%20in).svg" alt="Louisiana district map" />
+    <svg viewBox="0 0 2016 1584" xmlns="http://www.w3.org/2000/svg">
+      <circle class="lhs" cx="420" cy="320" r="130" data-district="7" tabindex="0" role="button" aria-label="District 7"/>
+      <circle class="lhs" cx="900" cy="259" r="130" data-district="8" tabindex="0" role="button" aria-label="District 8"/>
+      <circle class="lhs" cx="724" cy="664" r="130" data-district="6" tabindex="0" role="button" aria-label="District 6"/>
+      <circle class="lhs" cx="491" cy="1064" r="130" data-district="5" tabindex="0" role="button" aria-label="District 5"/>
+      <circle class="lhs" cx="836" cy="1064" r="130" data-district="4" tabindex="0" role="button" aria-label="District 4"/>
+      <circle class="lhs" cx="1138" cy="930" r="130" data-district="2" tabindex="0" role="button" aria-label="District 2"/>
+      <circle class="lhs" cx="1161" cy="1223" r="130" data-district="3" tabindex="0" role="button" aria-label="District 3"/>
+      <circle class="lhs" cx="1398" cy="1081" r="130" data-district="1" tabindex="0" role="button" aria-label="District 1"/>
+    </svg>
+    <div class="loverlay" id="lOverlay">
+      <div class="lbox">
+        <button class="lclose" id="lClose">&times;</button>
+        <div id="lContent"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+var D={
+"1":{name:"District 1",area:"New Orleans / Southeast Louisiana",cebBoard:[{name:"Adrianne Trogden",role:"CEB Chairperson, New Orleans"},{name:"Dr. Danita Muse",role:"CEB Vice-Chairperson, New Orleans"},{name:"Ryan Felder",role:"LASACT President-Elect, Monroe"}],lasactRep:[{name:"Shaneeka Harrison",role:"District 1 Rep, Metairie"}],cebRep:[{name:"Christopher Collins",role:"District 1 Rep, Slidell"}]},
+"2":{name:"District 2",area:"Baton Rouge / Denham Springs",cebBoard:[{name:"Janice Rebstock",role:"CEB Secretary/Treasurer, Denham Springs"}],lasactRep:[{name:"Vacant",role:"District 2 Rep, Baton Rouge"}],cebRep:[{name:"Emily Tilley",role:"District 2 Rep, Baton Rouge"}]},
+"3":{name:"District 3",area:"Houma / Thibodaux",lasactRep:[{name:"Jay Maiorana",role:"District 3 Rep, Houma/Thibodaux"}],cebRep:[{name:"Rebecca Davis",role:"District 3 Rep, Thibodaux"}]},
+"4":{name:"District 4",area:"Lafayette / Cankton",lasactRep:[{name:"Joseph Carnell Jr.",role:"District 4 Rep, Cankton"}],cebRep:[{name:"Jonathan Choate",role:"District 4 Rep, Lafayette"}]},
+"5":{name:"District 5",area:"Lake Charles / Southwest Louisiana",lasactRep:[{name:"Keli Lyons",role:"District 5 Rep, Lake Charles"}],cebRep:[{name:"Darcella Armstrong",role:"District 5 Rep, Lake Charles Area"}]},
+"6":{name:"District 6",area:"Alexandria / Pineville / Central Louisiana",lasactBoard:[{name:"David Brocato",role:"LASACT Member-at-Large, Pineville"}],lasactRep:[{name:"Edward Lytle",role:"District 6 Rep, Pineville"}],cebRep:[{name:"Cynthia Jameson",role:"District 6 Rep, Pineville"}]},
+"7":{name:"District 7",area:"Shreveport / Keithville / NW Louisiana",lasactBoard:[{name:"George Smith",role:"LASACT Secretary, Shreveport"},{name:"Bill Rose",role:"LASACT Treasurer, Shreveport"}],cebBoard:[{name:"Susan Garcia",role:"CEB LASACT President, Keithville"}],lasactRep:[{name:"Jennifer Ferguson",role:"District 7 Rep, Keithville"}],cebRep:[{name:"Stacie Tarpley",role:"District 7 Rep, Keithville"}]},
+"8":{name:"District 8",area:"Monroe / Northeast Louisiana",lasactBoard:[{name:"Ryan Felder",role:"LASACT President, Monroe"}],lasactRep:[{name:"Gregory Greer",role:"District 8 Rep, Monroe"}],cebRep:[{name:"Paula Tucker",role:"District 8 Rep"}],executive:[{name:"Marolon Mangham",role:"Executive Director / IC&RC Board Member"}]}
+};
+var SW=[{name:"Ryan Felder",role:"President, Monroe"},{name:"James Truax",role:"President-Elect, Youngsville"},{name:"George Smith",role:"Secretary, Shreveport"},{name:"Bill Rose",role:"Treasurer, Shreveport"},{name:"James Truax",role:"Member-at-Large, Watson"},{name:"David Brocato",role:"Member-at-Large, Pineville"}];
+var SL={lasactBoard:"LASACT Board Officers",cebBoard:"CEB Board Officers",lasactRep:"LASACT District Representative",cebRep:"CEB District Representative",executive:"Executive"};
+function mem(list){return list.map(function(m){return'<div class="lmember"><div class="lmname">'+m.name+'</div><div class="lmrole">'+m.role+'</div></div>';}).join('');}
+function openD(id){
+  var d=D[id];if(!d)return;
+  var h='<div class="lmhead"><div class="lbadge">'+id+'</div><div><h3>'+d.name+'</h3><p>'+d.area+'</p></div></div>';
+  ['lasactBoard','cebBoard','lasactRep','cebRep','executive'].forEach(function(k){
+    if(d[k]&&d[k].length)h+='<div class="lsec"><div class="lstitle">'+SL[k]+'</div>'+mem(d[k])+'</div>';
+  });
+  h+='<div class="lswnote"><h4>LASACT Board Officers 2025 — Statewide</h4>'+mem(SW)+'</div>';
+  document.getElementById('lContent').innerHTML=h;
+  document.getElementById('lOverlay').classList.add('open');
+}
+function closeD(){document.getElementById('lOverlay').classList.remove('open');}
+document.querySelectorAll('#lasact-wrap .lhs').forEach(function(el){
+  el.addEventListener('click',function(){openD(el.dataset.district);});
+  el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openD(el.dataset.district);}});
+});
+document.getElementById('lClose').addEventListener('click',closeD);
+document.getElementById('lOverlay').addEventListener('click',function(e){if(e.target===this)closeD();});
+})();
+</script>
