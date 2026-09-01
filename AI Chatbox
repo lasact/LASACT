@@ -1,0 +1,449 @@
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+#lsa-launcher,#lsa-window,#lsa-launcher *,#lsa-window *{box-sizing:border-box;margin:0;}
+#lsa-launcher {
+  position: fixed; bottom: 30px; right: 30px;
+  width: 62px; height: 62px; background: #1a3a5c;
+  border-radius: 50%; border: 2.5px solid #ffffff;
+  cursor: pointer; display: flex; align-items: center;
+  justify-content: center; z-index: 9999;
+  transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 0 5px rgba(255,255,255,0.15), 0 0 24px rgba(255,255,255,0.18), 0 6px 22px rgba(26,58,92,0.4);
+}
+#lsa-launcher:hover {
+  background: #254d7a; transform: scale(1.07);
+  box-shadow: 0 0 0 7px rgba(255,255,255,0.2), 0 0 32px rgba(255,255,255,0.26), 0 8px 26px rgba(26,58,92,0.45);
+}
+#lsa-launcher svg { width: 26px; height: 26px; }
+#lsa-launcher .lsa-ic { display: block; }
+#lsa-launcher .lsa-ix { display: none; }
+#lsa-launcher.open .lsa-ic { display: none; }
+#lsa-launcher.open .lsa-ix { display: block; }
+#lsa-window {
+  position: fixed; bottom: 108px; right: 30px;
+  width: 400px; max-width: calc(100vw - 44px);
+  height: 600px; max-height: calc(100vh - 140px);
+  background: #ffffff; border-radius: 18px;
+  border: 1px solid #c5d8ea; display: flex;
+  flex-direction: column; z-index: 9998;
+  transform: translateY(20px) scale(0.97);
+  opacity: 0; pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden; font-family: 'Open Sans', sans-serif;
+}
+#lsa-window.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+
+.lsa-hdr {
+  background: #1a3a5c; padding: 18px 22px;
+  display: flex; align-items: center; gap: 14px; flex-shrink: 0;
+}
+.lsa-hdr-av {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.35);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.lsa-hdr-av svg { width: 20px; height: 20px; }
+.lsa-hdr-txt { flex: 1; }
+.lsa-hdr-name {
+  font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 500;
+  color: #fff; letter-spacing: 0.06em; line-height: 1;
+}
+.lsa-hdr-sub { font-size: 11.5px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+.lsa-hdr-dot { width: 9px; height: 9px; border-radius: 50%; background: #4cd964; flex-shrink: 0; }
+
+.lsa-msgs {
+  flex: 1; overflow-y: auto; padding: 22px 20px;
+  display: flex; flex-direction: column; gap: 16px; background: #f0f5fa;
+}
+.lsa-msgs::-webkit-scrollbar { width: 4px; }
+.lsa-msgs::-webkit-scrollbar-thumb { background: #c5d8ea; border-radius: 2px; }
+
+.lsa-bbl { display: flex; gap: 10px; align-items: flex-end; }
+.lsa-bbl.u { flex-direction: row-reverse; }
+.lsa-bbl-av {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: #1a3a5c; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.lsa-bbl-av svg { width: 15px; height: 15px; }
+.lsa-bbl-txt {
+  max-width: 76%; padding: 12px 16px;
+  border-radius: 16px; font-size: 13.5px; line-height: 1.65;
+}
+.lsa-bbl.b .lsa-bbl-txt {
+  background: #fff; color: #1a2e3d;
+  border: 1px solid #c5d8ea; border-bottom-left-radius: 4px;
+}
+.lsa-bbl.u .lsa-bbl-txt {
+  background: #1a3a5c; color: #fff; border-bottom-right-radius: 4px;
+}
+
+.lsa-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 4px 20px 14px; background: #f0f5fa;
+}
+.lsa-chip {
+  background: #fff; border: 1px solid #a8c8e0; color: #1a3a5c;
+  font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 20px; cursor: pointer; white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+}
+.lsa-chip:hover { background: #ddeef8; border-color: #1a3a5c; }
+
+.lsa-dots { display: flex; gap: 5px; align-items: center; padding: 4px 2px; }
+.lsa-dots span {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #7aa8c8; animation: lsaDot 1.2s infinite;
+}
+.lsa-dots span:nth-child(2) { animation-delay: 0.2s; }
+.lsa-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes lsaDot {
+  0%,80%,100% { transform: scale(0.7); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.lsa-ftr {
+  border-top: 1px solid #c5d8ea; padding: 14px 16px;
+  display: flex; gap: 10px; align-items: flex-end;
+  background: #fff; flex-shrink: 0;
+}
+#lsa-input {
+  flex: 1; border: 1px solid #c5d8ea; border-radius: 22px; padding: 11px 18px;
+  font-family: 'Open Sans', sans-serif; font-size: 13.5px; color: #1a2e3d;
+  resize: none; outline: none; min-height: 42px; max-height: 110px;
+  line-height: 1.5; background: #f0f5fa; transition: border-color 0.2s;
+}
+#lsa-input:focus { border-color: #1a3a5c; background: #fff; }
+#lsa-send {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: #1a3a5c; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: background 0.2s, transform 0.15s;
+}
+#lsa-send:hover { background: #254d7a; }
+#lsa-send:active { transform: scale(0.93); }
+#lsa-send svg { width: 17px; height: 17px; }
+
+.lsa-disc {
+  font-size: 10.5px; color: #7aa8c8; text-align: center;
+  padding: 8px 20px 12px; line-height: 1.5;
+  border-top: 1px solid #e8f0f7; background: #fff;
+}
+.lsa-disc a { color: #1a3a5c; }
+
+@media (max-width: 440px) {
+  #lsa-window { right: 0; bottom: 0; width: 100%; max-width: 100%; height: 100%; max-height: 100%; border-radius: 0; }
+  #lsa-launcher { bottom: 90px; right: 20px; }
+}
+</style>
+
+<button id="lsa-launcher" aria-label="Open LASACT assistant">
+  <svg class="lsa-ic" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+  </svg>
+  <svg class="lsa-ix" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+</button>
+
+<div id="lsa-window" role="dialog" aria-label="LASACT assistant">
+  <div class="lsa-hdr">
+    <div class="lsa-hdr-av">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+      </svg>
+    </div>
+    <div class="lsa-hdr-txt">
+      <div class="lsa-hdr-name">LASACT ASSISTANT</div>
+      <div class="lsa-hdr-sub">Louisiana Association of Substance Abuse Counselors & Trainers</div>
+    </div>
+    <div class="lsa-hdr-dot"></div>
+  </div>
+
+  <div class="lsa-msgs" id="lsa-msgs"></div>
+  <div class="lsa-chips" id="lsa-chips"></div>
+
+  <div class="lsa-ftr">
+    <textarea id="lsa-input" placeholder="Ask me anything..." rows="1"></textarea>
+    <button id="lsa-send" aria-label="Send">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="lsa-disc">
+    For credentialing questions contact <a href="mailto:ceb@lasact.org">ceb@lasact.org</a> |
+    <a href="https://www.lasact.org/contact" target="_blank">Contact LASACT</a>
+  </div>
+</div>
+
+<script>
+(function(){
+
+var WORKER_URL = 'https://lasact.nyaskipper.workers.dev/';
+
+var SYS = `You are the virtual assistant for LASACT — the Louisiana Association of Substance Abuse Counselors and Trainers. Your job is to help addiction professionals, students, and allied health workers find information about LASACT membership, education, credentialing, conferences, and workshops. Be warm, helpful, and professional. Keep answers concise (2-4 sentences). Always direct users to the relevant page on lasact.org for more details. Only use information from lasact.org and la-adra.org as your sources.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+ABOUT LASACT (lasact.org)
+━━━━━━━━━━━━━━━━━━━━━━━━━
+Full name: Louisiana Association of Substance Abuse Counselors and Trainers
+Mission: To promote and enhance addiction professionals & providers in areas of treatment, education, prevention, and advocacy.
+Contact for membership: Isabel Mathes — isabel@lasact.org
+Contact for credentialing: Donna Simoneaux — ceb@lasact.org
+Contact page: lasact.org/contact
+Online payments: lasact.org/online-payments
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+MEMBERSHIP (lasact.org/membership)
+━━━━━━━━━━━━━━━━━━━━━━━━━
+Individual Membership:
+- $90 New/Renewal (Jan 1 – Dec 31, 2026)
+- $120 Reinstatement after March 21st
+- Must be purchased online via membership form
+
+Organizational Membership:
+- $260 New/Renewal (July 1 – June 30, 2026)
+- $0 Reinstatement fee
+- Bulk memberships must be purchased by phone
+
+Benefits: Advocacy at state & national level via IC&RC affiliation, free conference registration, marketing opportunities, job postings, agency outreach, regional representation, board participation.
+Allow 2-3 business days for processing after submitting form.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+EDUCATION / AEP TRAINING COURSES (lasact.org/education)
+━━━━━━━━━━━━━━━━━━━━━━━━━
+LASACT is an Approved Education Provider (AEP #2) through ADRA.
+Courses are open to all individuals interested in addiction, including social workers, nurses, marriage & family therapists, and other allied health professionals.
+Enroll anytime. Courses are online via Moodle. Certificate downloads automatically upon completion.
+80% minimum score required on all quizzes. Must complete units in order.
+$15 fee for replacement of lost certificate.
+Payment plans available through Klarna and AfterPay.
+
+COURSES AVAILABLE:
+1. Gambling Disorder Treatment Training (30 hours)
+   - Member: $450 | Non-member: $600 | App fee: $95
+2. Clinical Supervision Training (30 hours)
+   - Member: $350 | Non-member: $600 | App fee: $0
+3. Substance Use Disorder Treatment Training ONLY — COMING SOON June 3, 2026 (180 hours)
+   - Member: $1,200 | Non-member: $2,400 | App fee: $95
+4. Gambling + Substance Use Disorder Training — COMING SOON June 3, 2026 (180 + 30 hours)
+   - Member: $1,500 | Non-member: $3,000 | App fee: $95
+
+Note: LASACT membership ($90) required for member pricing. Must be current for the calendar year.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+CREDENTIALING (lasact.org/credentialing)
+━━━━━━━━━━━━━━━━━━━━━━━━━
+LASACT is AEP #2, approved by ADRA. Member of IC&RC (International Certification & Reciprocity Consortium).
+Credentialing contact: Donna Simoneaux — ceb@lasact.org
+Test payment form: form.jotform.com/243304959615159
+
+ADRA CREDENTIALS AVAILABLE: LAC, CAC, RAC, CCS, LPP, CPP, RPP
+Entry levels: CIT (Counselor in Training) for counselors; PSIT (Prevention Specialist in Training) for prevention professionals.
+CIT/PSIT status may be held up to 72 months.
+Must complete 180 hours of substance abuse specific education before applying for CIT.
+Credential is good for 2 years. 48 hours of CEUs required per 2-year period.
+
+TESTING PROCEDURE:
+1. Meet educational & work requirements per LA 803, submit application + fee to ADRA, complete criminal background check
+2. ADRA emails approval letter — send copy to ceb@lasact.org
+3. Complete Test Payment Form and send approval letter to LASACT
+   - LAC, CAC, RAC: $285 | CCS: $200 | LPP, CPP, RPP: $285
+4. LASACT registers candidate with ISO Quality Testing — exam can be scheduled within 5 days
+5. Testing is computer-based at LASACT office in Baton Rouge. Results immediate.
+6. If failed: 90-day wait + re-test fee. After 4 failed attempts, remedial action required.
+
+IMPORTANT: Updated AADC exam, practice exam & resources available March 16, 2026.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+WORKSHOPS (lasact.org/workshops)
+━━━━━━━━━━━━━━━━━━━━━━━━━
+LASACT offers educational workshops on: substance abuse prevention & counseling, compulsive gambling, professional ethics, clinical supervision.
+Test Prep Workshops: $79
+LASACT is an Approved Educational Provider (AEP) through ADRA.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+CONFERENCE (lasact.org/lasactconference)
+━━━━━━━━━━━━━━━━━━━━━━━━━
+Annual conference spanning 4 days, 30+ credit hours.
+Topics include: breaking stigmas, current drug trends, addiction prevention, career opportunities.
+Free conference registration included with membership.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+ADRA — CREDENTIALING BODY (la-adra.org)
+━━━━━━━━━━━━━━━━━━━━━━━━━
+Full name: Addictive Disorder Regulatory Authority
+Role: State licensing and credentialing board for addiction counselors and prevention professionals in Louisiana.
+Address: 12041 Bricksome Avenue, Suite B, Baton Rouge, LA 70816
+Phone: (225) 361-0698
+Office hours: 7am–3pm | Phone hours: 8am–2pm, Tuesday–Friday (observes state holidays)
+Applications & renewals: submitted through Certemy portal
+Credential verification: app.certemy.com/public-registry/8ca73d3d-b51c-42b9-9e44-892b2411d264
+Board meetings: 3rd Friday of January, April, July, October
+Website: la-adra.org
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+OTHER PAGES
+━━━━━━━━━━━━━━━━━━━━━━━━━
+- Employment: lasact.org/employment
+- Recovery Ready: lasact.org/recovery-ready
+- Online Payments: lasact.org/online-payments
+- Contact: lasact.org/contact
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━
+- Only answer based on information from lasact.org and la-adra.org
+- Always link to the relevant page when discussing a topic
+- Direct credentialing questions to ceb@lasact.org
+- Direct membership questions to isabel@lasact.org
+- Be warm, concise, and helpful
+- If unsure, direct the user to lasact.org/contact`;
+
+var C0 = ["Membership info","Credentialing & testing","Education & CEUs","Workshops","Annual conference","Contact LASACT"];
+
+var msgs = [], busy = false, isOpen = false;
+
+var launcher = document.getElementById('lsa-launcher');
+var win      = document.getElementById('lsa-window');
+var msgBox   = document.getElementById('lsa-msgs');
+var chipsEl  = document.getElementById('lsa-chips');
+var inp      = document.getElementById('lsa-input');
+var sendBtn  = document.getElementById('lsa-send');
+
+launcher.addEventListener('click', function(){
+  isOpen = !isOpen;
+  launcher.classList.toggle('open', isOpen);
+  win.classList.toggle('open', isOpen);
+  if(isOpen && msgs.length === 0) init();
+  if(isOpen) setTimeout(function(){ inp.focus(); }, 320);
+});
+
+function init(){
+  bot("Hello! I'm the LASACT virtual assistant. I can help you with membership, credentialing, education courses, workshops, and more. What can I help you with today?");
+  showChips(C0);
+}
+
+function bot(t){ msgBox.appendChild(bubble('b', t)); scroll(); }
+function user(t){ msgBox.appendChild(bubble('u', t)); scroll(); }
+
+function bubble(role, t){
+  var w = document.createElement('div');
+  w.className = 'lsa-bbl ' + role;
+  if(role === 'b'){
+    var av = document.createElement('div');
+    av.className = 'lsa-bbl-av';
+    av.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>';
+    w.appendChild(av);
+  }
+  var tx = document.createElement('div');
+  tx.className = 'lsa-bbl-txt';
+  tx.innerHTML = fmt(t);
+  w.appendChild(tx);
+  return w;
+}
+
+function fmt(s){
+  return s
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" style="color:#1a3a5c;" target="_blank">$1</a>')
+    .replace(/\n/g, '<br>');
+}
+
+function showTyping(){
+  var w = document.createElement('div');
+  w.className = 'lsa-bbl b'; w.id = 'lsa-typing';
+  var av = document.createElement('div');
+  av.className = 'lsa-bbl-av';
+  av.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>';
+  var tx = document.createElement('div');
+  tx.className = 'lsa-bbl-txt';
+  tx.innerHTML = '<div class="lsa-dots"><span></span><span></span><span></span></div>';
+  w.appendChild(av); w.appendChild(tx);
+  msgBox.appendChild(w); scroll();
+}
+function killTyping(){ var e = document.getElementById('lsa-typing'); if(e) e.remove(); }
+
+function showChips(arr){
+  chipsEl.innerHTML = '';
+  arr.forEach(function(l){
+    var b = document.createElement('button');
+    b.className = 'lsa-chip'; b.textContent = l;
+    b.onclick = function(){ chipsEl.innerHTML = ''; send(l); };
+    chipsEl.appendChild(b);
+  });
+}
+
+function scroll(){ msgBox.scrollTop = msgBox.scrollHeight; }
+
+async function send(text){
+  text = text.trim();
+  if(!text || busy) return;
+  busy = true;
+  chipsEl.innerHTML = '';
+  user(text);
+  inp.value = ''; inp.style.height = 'auto';
+  showTyping();
+  msgs.push({role:'user', content: text});
+
+  try{
+    var res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-5',
+        max_tokens: 600,
+        system: SYS,
+        messages: msgs
+      })
+    });
+    var data = await res.json();
+    var reply = (data.content && data.content[0] && data.content[0].text)
+      ? data.content[0].text
+      : "I'm having trouble right now. Please contact LASACT directly at [lasact.org/contact](https://www.lasact.org/contact).";
+    msgs.push({role:'assistant', content: reply});
+    killTyping(); bot(reply);
+
+    var lo = text.toLowerCase();
+    if(/member|join|renew|dues/.test(lo))
+      showChips(["Individual membership","Org membership","Member benefits","Contact Isabel"]);
+    else if(/credential|cit|lac|cac|rac|ccs|test|exam|adra/.test(lo))
+      showChips(["Testing procedure","Exam fees","ADRA website","Contact Donna"]);
+    else if(/education|ceu|course|train|lact|180|hour/.test(lo))
+      showChips(["SUD training","Gambling training","Clinical supervision","Enroll now"]);
+    else if(/workshop|seminar/.test(lo))
+      showChips(["Workshop topics","Test prep workshop","CEUs offered","Schedule"]);
+    else if(/conference|annual|event/.test(lo))
+      showChips(["Conference info","Free with membership","CEU hours","Register"]);
+    else if(/contact|email|phone|reach/.test(lo))
+      showChips(["Membership contact","Credentialing contact","ADRA contact","Contact page"]);
+    else if(/adra|regulatory|authority|state/.test(lo))
+      showChips(["ADRA credentials","Apply to ADRA","ADRA contact","Credential verification"]);
+    else if(/employ|job|hiring|career/.test(lo))
+      showChips(["Job board","Post a job","Membership benefits","Contact LASACT"]);
+    else
+      showChips(["Membership info","Credentialing","Education & CEUs","Contact LASACT"]);
+
+  } catch(e){
+    killTyping();
+    bot("I'm having trouble connecting. Please contact LASACT at [lasact.org/contact](https://www.lasact.org/contact).");
+  }
+  busy = false;
+}
+
+sendBtn.addEventListener('click', function(){ send(inp.value); });
+inp.addEventListener('keydown', function(e){
+  if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); send(inp.value); }
+});
+inp.addEventListener('input', function(){
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 110) + 'px';
+});
+})();
+</script>
