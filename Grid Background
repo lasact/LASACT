@@ -1,0 +1,58 @@
+<!-- LASACT Grid Background — Paste in Site Settings > Custom Code > Footer (before </body>), or in an Embed element -->
+<style>
+  :root {
+    --lasact-grid-size: 48px;                      /* space between lines */
+    --lasact-grid-line: 1px;                       /* line thickness */
+    --lasact-grid-color: rgba(34, 120, 213, 0.18); /* line color */
+    --lasact-grid-bg: #ffffff;                     /* page color behind the lines */
+    --lasact-grid-speed: 6s;                       /* time to move one cell; higher = slower */
+  }
+
+  html {
+    background: var(--lasact-grid-bg);
+  }
+
+  body {
+    background: transparent !important;
+  }
+
+  .lasact-grid-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--lasact-grid-color) var(--lasact-grid-line), transparent var(--lasact-grid-line)),
+      linear-gradient(to bottom, var(--lasact-grid-color) var(--lasact-grid-line), transparent var(--lasact-grid-line));
+    background-size: var(--lasact-grid-size) var(--lasact-grid-size);
+    animation: lasact-grid-drift var(--lasact-grid-speed) linear infinite;
+    /* soft fade toward the edges */
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 100%);
+            mask-image: radial-gradient(ellipse at center, #000 40%, transparent 100%);
+  }
+
+  /* moving exactly one cell makes the loop seamless */
+  @keyframes lasact-grid-drift {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: var(--lasact-grid-size) var(--lasact-grid-size),
+                                var(--lasact-grid-size) var(--lasact-grid-size); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lasact-grid-bg { animation: none; }
+  }
+</style>
+
+<script>
+  (function () {
+    if (document.querySelector('.lasact-grid-bg')) return;
+    function add() {
+      var grid = document.createElement('div');
+      grid.className = 'lasact-grid-bg';
+      grid.setAttribute('aria-hidden', 'true');
+      document.body.prepend(grid);
+    }
+    if (document.body) add();
+    else document.addEventListener('DOMContentLoaded', add);
+  })();
+</script>
