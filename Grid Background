@@ -3,7 +3,7 @@
   :root {
     --lasact-grid-size: 48px;                      /* space between lines */
     --lasact-grid-line: 1px;                       /* line thickness */
-    --lasact-grid-color: rgba(34, 120, 213, 0.18); /* line color */
+    --lasact-grid-color: #e2d288;                  /* line color */
     --lasact-grid-bg: #ffffff;                     /* page color behind the lines */
     --lasact-grid-speed: 6s;                       /* time to move one cell; higher = slower */
   }
