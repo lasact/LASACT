@@ -4,6 +4,7 @@
     display: inline-block;
     transform-origin: 50% 50%;
     animation: lasact-star-spin 6s linear infinite; /* higher = slower */
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.18)); /* soft shadow; raise 0.18 for darker */
   }
 
   @keyframes lasact-star-spin {
