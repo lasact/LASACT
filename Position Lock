@@ -1,5 +1,8 @@
 <!-- LASACT Position Lock — Paste in Site Settings > Custom Code > Footer Code (before </body>) -->
 <!--
+  Desktop and laptop only (screens 992px and wider, Webflow's desktop breakpoint).
+  Below that, nothing here applies, so your separate mobile/tablet build is unaffected.
+
   Works with positions you've already set (px or %, top/left/bottom/right). No need to redo them.
 
   How to use in Webflow:
@@ -8,30 +11,36 @@
   3. Set DESIGN_WIDTH below to the screen width your layout looks right at (your laptop).
   4. Give the lock-stage Div a fixed height in px (the height the section has on your laptop).
 
-  Optional: also add the class "lock-scale" to the same Div to make everything inside grow/shrink
-  together on bigger/smaller screens, like zooming an image. Without it, the layout stays exactly
+  Optional: also add the class "lock-scale" to the same Div to make everything inside grow
+  together on bigger screens, like zooming an image. Without it, the layout stays exactly
   laptop-sized and centered, and wider screens just get extra space at the sides.
 -->
 <style>
   .lock-stage {
     position: relative;
-    width: 1280px;          /* keep equal to DESIGN_WIDTH below */
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .lock-stage.lock-scale {
-    max-width: none;
+  @media (min-width: 992px) {
+    .lock-stage {
+      width: 1280px;          /* keep equal to DESIGN_WIDTH below */
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lock-stage.lock-scale {
+      max-width: none;
+    }
   }
 </style>
 
 <script>
   (function () {
     var DESIGN_WIDTH = 1280; // keep equal to the width in the CSS above
+    var desktop = window.matchMedia('(min-width: 992px)');
 
     function fit() {
-      var scale = document.documentElement.clientWidth / DESIGN_WIDTH;
+      var scale = desktop.matches ? document.documentElement.clientWidth / DESIGN_WIDTH : '';
       document.querySelectorAll('.lock-stage.lock-scale').forEach(function (stage) {
         stage.style.zoom = scale;
       });
