@@ -1,0 +1,35 @@
+<!-- LASACT Position Lock — Paste in Site Settings > Custom Code > Head Code (or Page Settings > Head Code) -->
+<!--
+  How to use in Webflow:
+  1. Wrap the area that holds your positioned elements in a Div Block.
+  2. Give that Div the class "lock-stage" (fixed width) OR "lock-scale" (scales with the screen).
+  3. Put your absolute-positioned elements directly inside it.
+-->
+<style>
+  /* OPTION A: fixed stage. Content stays at your laptop layout width and is
+     centered; wider screens only add empty space at the sides.
+     Position children with px values (top / left). */
+  .lock-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;   /* set to the width your layout looks right at */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* OPTION B: scaling stage. The whole area keeps one shape (like an image)
+     and everything inside grows/shrinks together, so nothing drifts.
+     Position children with % values (top / left / width). */
+  .lock-scale {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;  /* match the shape of your section on a laptop */
+    container-type: inline-size;
+  }
+
+  /* Optional: in a .lock-scale area, add class "lock-text" to text so it scales
+     with the area too. 1cqw = 1% of the area's width. */
+  .lock-scale .lock-text {
+    font-size: 1.5cqw;
+  }
+</style>
