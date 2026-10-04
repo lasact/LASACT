@@ -22,7 +22,7 @@
 
   @media (min-width: 992px) {
     .lock-stage {
-      width: 1280px;          /* keep equal to DESIGN_WIDTH below */
+      width: 1439px;          /* keep equal to DESIGN_WIDTH below */
       max-width: 100%;
       margin-left: auto;
       margin-right: auto;
@@ -36,7 +36,7 @@
 
 <script>
   (function () {
-    var DESIGN_WIDTH = 1280; // keep equal to the width in the CSS above
+    var DESIGN_WIDTH = 1439; // keep equal to the width in the CSS above
     var desktop = window.matchMedia('(min-width: 992px)');
 
     function fit() {
